@@ -1,0 +1,65 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../constants/constants.dart';
+import '../theming/app_colors.dart';
+import '../theming/app_styles.dart';
+
+class AppTextFormField extends StatelessWidget {
+  const AppTextFormField(
+      {super.key,
+      required this.tffHeaderText,
+      required this.tffHintText,
+      required this.tffPrefixIcon});
+  final String tffHeaderText;
+  final String tffHintText;
+  final IconData tffPrefixIcon;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 5.h,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          tffHeaderText,
+          style: TextStyles.font14Regular,
+        ),
+        TextFormField(
+          cursorColor: AppColors.lightThemePurple,
+          decoration: InputDecoration(
+            hintText: tffHintText,
+            hintStyle: TextStyles.font16Regular.copyWith(
+              color: AppColors.lightThemeGrey,
+            ),
+            prefixIcon: Icon(
+              tffPrefixIcon,
+              size: tffIconSize,
+              color: AppColors.lightThemePurple,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: const BorderSide(
+                color: AppColors.lightThemePurple,
+                width: 2,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: const BorderSide(
+                color: AppColors.lightThemePurple,
+                width: 2,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: const BorderSide(
+                color: Colors.red,
+                width: 2,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

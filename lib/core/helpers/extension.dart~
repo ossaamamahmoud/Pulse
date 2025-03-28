@@ -1,0 +1,45 @@
+import 'package:flutter/cupertino.dart';
+
+extension Navigation on BuildContext {
+  void navigateTo(Widget route) {
+    Navigator.push(
+      this,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondAnimation) => route,
+      ),
+    );
+  }
+
+  void navigateToNamed(String routeName) {
+    Navigator.pushNamed(this, routeName);
+  }
+
+  void navigateToReplacement(Widget route) {
+    Navigator.pushReplacement(
+      this,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondAnimation) => route,
+      ),
+    );
+  }
+
+  void navigateToNamedReplacement(String routeName) {
+    Navigator.pushReplacementNamed(this, routeName);
+  }
+
+  void navigateAndRemoveUntil(String routeName) {
+    Navigator.pushNamedAndRemoveUntil(this, routeName, (route) => false);
+  }
+
+  void navigateAndRemoveAll(String routeName) {
+    Navigator.pushNamedAndRemoveUntil(this, routeName, (route) => false);
+  }
+
+  void popUntil(String routeName) {
+    Navigator.popUntil(this, ModalRoute.withName(routeName));
+  }
+
+  void pop() {
+    Navigator.pop(this);
+  }
+}

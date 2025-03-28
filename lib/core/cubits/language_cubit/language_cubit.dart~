@@ -1,0 +1,18 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pulse/core/cache/cache_helper.dart';
+
+enum Language { en, ar }
+
+class LangCubit extends Cubit<Language> {
+  LangCubit(super.initialLanguage);
+
+  void switchLanguage(Language language) {
+    if (language != state) {
+      emit(language);
+      CacheHelper.setStringData(
+        key: 'lang',
+        value: language == Language.ar ? 'ar' : 'en',
+      );
+    }
+  }
+}
